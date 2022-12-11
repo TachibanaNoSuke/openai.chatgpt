@@ -40,11 +40,11 @@ app.post('/callback', line.middleware(config), (req, res) => {
  * @returns 
  */
 async function handleEvent(event) {
-    console.log(event);
     if (event.type !== 'message' || event.message.type !== 'text') {
         console.log("'event.type !== 'message' || event.message.type !== 'text''")
         return Promise.resolve(null);
     }
+    console.log('event.message.text', event.message.text)
 
     const completion = await openai.createCompletion({
         model: "text-davinci-003",
