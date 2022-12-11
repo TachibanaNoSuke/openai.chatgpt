@@ -14,6 +14,7 @@ const openai = new OpenAIApi(configuration);
 const line = require('@line/bot-sdk');
 const express = require('express');
 const config = {
+    channelId: process.env.CHANNEL_ID,
     channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
     channelSecret: process.env.CHANNEL_SECRET,
 };
