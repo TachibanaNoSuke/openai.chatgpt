@@ -7,6 +7,7 @@ const {
 } = require("openai");
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
+    enable_context: true,
 });
 const openai = new OpenAIApi(configuration);
 
@@ -48,8 +49,12 @@ async function handleEvent(event) {
 
     const completion = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: event.message.text,
-        max_tokens: 1000
+        prompt: `人類: ${event.message.text} \n AI:`,
+        max_tokens: 2048,
+        temperature: 0.9,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0.6,
     });
     const echo = {
         type: 'text',
